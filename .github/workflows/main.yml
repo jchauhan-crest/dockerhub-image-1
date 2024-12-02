@@ -32,7 +32,7 @@ jobs:
       # Step 4: Build the Docker image with the OCI label
       - name: Build Docker image with OCI label
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/image1 --label org.opencontainers.image.source="https://github.com/jchauhan-crest/bitbucket-usercase-ui".
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/image1 --label org.opencontainers.image.source="https://github.com/jchauhan-crest/bitbucket-usercase-ui" .
 
       - name: Build Docker image with Provenance with Attestation)
         run: |
