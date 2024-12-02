@@ -29,21 +29,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Step 4: Build the Docker image with the OCI label
-      - name: Build Docker image with OCI label
+      # Step 4: Build and push the Docker image with OCI label
+      - name: Build and push Docker image with OCI label
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/image1 --label org.opencontainers.image.source="https://github.com/jchauhan-crest/bitbucket-usercase-ui" .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/image1 --label org.opencontainers.image.source="https://github.com/${{ github.repository }}" --push .
 
-      - name: Build Docker image with Provenance with Attestation)
+      # Step 5: Build and push the Docker image with provenance
+      - name: Build and push Image 2 with Provenance
         run: |
-          docker buildx build --provenance=true -t ${{ secrets.DOCKER_USERNAME }}/image2 .
-      
-
-      # Step 5: Push the Docker image to Docker Hub
-      - name: Push Docker image to Docker Hub
-        run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/image1
-      
-      - name: Push Image 2 to Docker Hub
-        run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/image2
+          docker buildx build --provenance=true -t ${{ secrets.DOCKER_USERNAME }}/image2 --push .
