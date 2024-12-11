@@ -30,7 +30,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.ACCESS_TOKEN }}
 
-      # Step 4: Build and push the Docker image with OCI 
+      # Step 4: Build and push the Docker image with OCI Label
       - name: Build and push Docker image with OCI label
         run: |
           docker build -t ${{ secrets.USERNAME }}/image1 --label org.opencontainers.image.source="https://github.com/${{ github.repository }}" --push .
