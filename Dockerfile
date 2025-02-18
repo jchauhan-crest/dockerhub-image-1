@@ -24,6 +24,3 @@ COPY . .
 
 # Install the necessary dependencies in your project (assuming package.json is in the copied directory)
 RUN npm install
-
-# Start the application
-CMD ["npm", "start"]
