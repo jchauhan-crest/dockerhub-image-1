@@ -26,16 +26,10 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          registry: ghcr.io
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.ACCESS_TOKEN }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Step 4: Build and push the Docker image with OCI Label
+      # Step 4: Build and push the Docker image with OCI label
       - name: Build and push Docker image with OCI label
         run: |
-          docker build -t ${{ secrets.USERNAME }}/image1 --label org.opencontainers.image.source="https://github.com/${{ github.repository }}" --push .
-
-      # Step 5: Build and push the Docker image with provenance
-      - name: Build and push Image 2 with Provenance
-        run: |
-          docker buildx build --provenance=true -t ${{ secrets.USERNAME }}/image2 --push .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/dyntrace-one-agent --push .
