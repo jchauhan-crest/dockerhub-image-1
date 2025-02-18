@@ -21,6 +21,3 @@ RUN ARCHIVE=$(mktemp) && \
 ENV LD_PRELOAD="/opt/dynatrace/oneagent/agent/lib64/liboneagentproc.so"
 
 COPY . .
-
-# Install the necessary dependencies in your project (assuming package.json is in the copied directory)
-RUN npm install
